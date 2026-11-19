@@ -1,0 +1,25 @@
+:root { font: 15px/1.45 -apple-system, BlinkMacSystemFont, sans-serif; color: #213128; background: #eef0ec; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+#app { display: grid; grid-template-columns: 60px minmax(180px, 31vw) minmax(250px, 1fr); height: 100dvh; overflow: hidden; }
+nav { background: #e6ebe5; border-inline-end: 1px solid #d5ddd4; display: flex; flex-direction: column; align-items: center; gap: 7px; padding-top: 12px; }
+nav > button { border: 0; width: 40px; height: 40px; border-radius: 50%; color: #43544a; background: transparent; font-size: 20px; cursor: pointer; }
+nav > button:hover, nav > button[aria-pressed="true"] { background: #d5e0d7; }
+aside { background: #fafbf9; border-inline-end: 1px solid #d5ddd4; }
+aside header { padding: 15px; border-bottom: 1px solid #e4e8e3; }
+aside h2 { margin: 0; font-size: 23px; }
+#pane-side p { padding-inline: 12px; font-size: 12px; color: #55665a; }
+#pane-side button { display: block; width: 100%; text-align: start; padding: 16px 12px; font: inherit; color: inherit; border: 0; border-bottom: 1px solid #e4e8e3; background: transparent; cursor: pointer; }
+#pane-side button:hover { background: #e9f1eb; }
+#workspace { display: grid; place-items: center; color: #526258; }
+#main { width: 100%; height: 100%; display: grid; grid-template-rows: auto 1fr auto; gap: 14px; background: #e9eee7; padding: 20px; }
+#main input { border: 1px solid #cfd9ce; border-radius: 10px; padding: 12px; font: inherit; }
+#app[data-layout] { position: relative; z-index: 9; }
+#app[data-layout] .chat-list header { margin-inline: 24px 44px; }
+[data-demo-theme="dark"] { color-scheme: dark; color: #e6ede8; background: #121713; }
+[data-demo-theme="dark"] nav, [data-demo-theme="dark"] aside { background: #1b231e; border-color: #35423a; }
+[data-demo-theme="dark"] nav > button, [data-demo-theme="dark"] #pane-side p, [data-demo-theme="dark"] #workspace { color: #b7c5bc; }
+[data-demo-theme="dark"] nav > button:hover, [data-demo-theme="dark"] nav > button[aria-pressed="true"], [data-demo-theme="dark"] #pane-side button:hover { background: #293b30; }
+[data-demo-theme="dark"] aside header, [data-demo-theme="dark"] #pane-side button, [data-demo-theme="dark"] #main input { border-color: #35423a; }
+[data-demo-theme="dark"] #main { background: #1b231e; }
+@media (max-width: 630px) { #app { grid-template-columns: 48px minmax(92px, 26vw) minmax(0, 1fr); } }

@@ -1,0 +1,10 @@
+.DS_Store
+node_modules/
+*.log
+.env
+.env.*
+coverage/
+
+site/downloads/*.zip
+/landing/dist/
+__pycache__/

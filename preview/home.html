@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Home do What the Focus · Prévia 0.3.11</title>
+  <link rel="stylesheet" href="../extension/home-host.css">
+  <link rel="stylesheet" href="home-preview.css">
+  <script src="../extension/settings.js" defer></script>
+  <script src="../extension/locale-data.js" defer></script>
+  <script src="../extension/i18n.js" defer></script>
+  <script src="../extension/focus-core.js" defer></script>
+  <script src="../extension/runtime-client.js" defer></script>
+  <script src="../extension/focus-page.js" defer></script>
+  <script src="home-preview.js" defer></script>
+  <script src="../extension/home.js" defer></script>
+</head>
+<body>
+  <div id="app">
+    <nav aria-label="Barra lateral fictícia">
+      <button type="button" data-navbar-item aria-label="Chats" aria-pressed="true">◉</button>
+      <button type="button" id="demo-updates" data-navbar-item aria-label="Atualizações">◎</button>
+      <button type="button" id="demo-settings" data-navbar-item aria-label="Configurações">⚙</button>
+    </nav>
+    <aside class="chat-list">
+      <header data-testid="chatlist-header"><div data-testid="drawer-title-body"><h2>WhatsApp</h2></div></header>
+      <div id="pane-side">
+        <p>Página de demonstração. Dados fictícios.</p>
+        <button type="button" data-demo-chat><span data-testid="cell-frame-container">Projeto de exemplo</span></button>
+        <button type="button" data-demo-chat="ignore-escape"><span data-testid="cell-frame-container">Estúdio de exemplo</span></button>
+      </div>
+    </aside>
+    <main id="workspace">
+      <div data-testid="intro-panel-empty-state-action-tile-group">Tela de abertura fictícia</div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html><html lang="en" class="waf-groups"><head><meta charset="utf-8"><title>Content rules integration</title><link id="tab-icon" rel="shortcut icon" href="../extension/icons/icon16.png"><link rel="stylesheet" href="../extension/rules.css"><script src="mock-chrome.js"></script><script src="../extension/settings.js"></script><script src="../extension/content.js" defer></script><script src="content-tests.js" defer></script></head><body>
+<nav>
+  <div><button data-navbar-item aria-label="Chats"><svg><title>wds-ic-chat-filled</title></svg>Chats</button></div>
+  <div><button data-navbar-item aria-label="Status"><svg><title>wds-ic-status</title></svg>Status</button></div>
+  <div><button data-navbar-item aria-label="Channels"><svg><title>wds-ic-channels</title></svg>Channels</button></div>
+  <div><button data-navbar-item aria-label="Communities"><svg><title>wds-ic-communities</title></svg>Communities</button></div>
+  <div><button data-navbar-item aria-label="Meta AI">Meta AI</button></div>
+  <div><button data-navbar-item aria-label="Media"><svg><title>ic-filter</title></svg>Media</button></div>
+  <div><button data-navbar-item aria-label="Calls"><svg><title>ic-call</title></svg>Calls</button></div>
+  <div><button data-navbar-item aria-label="You">You</button></div>
+</nav>
+<div id="side"><input placeholder="Search"><div id="pane-side"><button aria-label="Archived, 3 unread messages">Archived</button><button aria-label="Locked chats">Locked chats</button><div role="grid"><div role="row" data-waf-group><strong>Team</strong></div><div role="row"><strong>Contact</strong><button aria-label="Ask Meta AI" id="private-message">Quoted message</button><button aria-label="Archived" id="chat-button">Message control</button></div></div></div></div>
+<div id="current-chatlist" data-testid="chatlist-panel">
+  <button data-testid="chatlist-panel-archived-button" aria-label="Archived " type="button">
+    <div data-testid="cell-frame-container"><svg><title>ic-archive</title></svg><span>Archived</span><span data-testid="icon-unread-count">1</span></div>
+  </button>
+  <div role="row"><button id="archive-action" aria-label="Archive chat"><svg><title>ic-archive</title></svg></button></div>
+  <div role="row" id="status-preview" style="display:flex;align-items:center;gap:8px;margin:12px">
+    <div id="profile-ring" data-testid="chatlist-status-ring" style="display:grid;place-items:center;width:48px;height:48px;border:2px solid seagreen;border-radius:50%;position:relative">
+      <div role="button" tabindex="0" aria-label="View status" style="--WDS-persistent-activity-indicator:seagreen;position:relative">
+        <div>
+          <svg id="status-avatar" role="img" aria-label="Avatar fictício" width="48" height="48" viewBox="0 0 48 48">
+            <mask id="fixture-avatar-mask"><g fill="white"><circle cx="50%" cy="50%" r="calc(50% - 4px)"/></g></mask>
+            <g mask="url(#fixture-avatar-mask)">
+              <image x="4" y="4" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="width:calc(100% - 8px);height:calc(100% - 8px)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23dce8f5'/%3E%3C/svg%3E"/>
+              <g fill="transparent" stroke="var(--WDS-components-outline-profile-photo)" stroke-width="1" style="--WDS-components-outline-profile-photo:#8a9bb1"><circle cx="50%" cy="50%" r="calc(50% - 4px)"/></g>
+            </g>
+          </svg>
+          <svg id="status-decoration" width="48" height="48" viewBox="0 0 48 48" aria-hidden="true" style="position:absolute;inset:0">
+            <g><circle cx="24" cy="24" r="23" fill="none" stroke="var(--WDS-persistent-activity-indicator)" stroke-width="2" stroke-dasharray="68 4 68 4" stroke-linecap="round"/></g>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <button id="status-chat" type="button">Conversa de exemplo</button><span id="unread-badge" style="background:seagreen;color:white;border-radius:50%;padding:2px 6px">2</span>
+  </div>
+  <div role="row" style="display:flex;align-items:center;gap:8px;margin:12px">
+    <span id="plain-avatar" role="img" aria-label="Avatar comum fictício" style="display:block;width:48px;height:48px;border-radius:50%;background:#dce8f5"></span>
+    <button type="button">Outra conversa de exemplo</button>
+  </div>
+</div>
+<button id="ai"><span>Ask Meta AI</span></button><div id="waf-group-progress">Old progress</div><div id="new-ui"></div>
+<output id="result">Running…</output><ol id="checks"></ol>
+</body></html>

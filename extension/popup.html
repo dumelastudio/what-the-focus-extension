@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark"><title>What the Focus</title>
+  <link rel="icon" href="icons/icon32.png"><link rel="stylesheet" href="popup.css">
+  <script src="settings.js" defer></script><script src="locale-data.js" defer></script>
+  <script src="i18n.js" defer></script><script src="focus-core.js" defer></script><script src="storage.js" defer></script><script src="runtime-client.js" defer></script><script src="preference-controls.js" defer></script><script src="tooltips.js" defer></script><script src="popup.js" defer></script><script src="focus-popup.js" defer></script>
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand-mark" href="product/index.html" target="_blank" rel="noopener" data-product-link aria-label="What the Focus"><img src="icons/mark.svg" width="36" height="36" alt=""></a>
+    <div class="brand-copy"><h1>What the Focus</h1><p data-i18n="tagline">A little less noise.</p></div>
+    <div class="top-controls">
+      <button class="icon-button theme-button" id="theme-button" type="button" data-i18n-label="theme"><svg class="theme-system" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 3a9 9 0 0 0 0 18V3Z" fill="currentColor"/></svg><svg class="theme-light" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/></svg><svg class="theme-dark" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 15.5A8.8 8.8 0 0 1 8.5 3.5a9 9 0 1 0 12 12Z"/></svg></button>
+      <div class="language-tool">
+        <button class="icon-button language-button" id="language-button" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="language-menu" data-i18n-label="language"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a16 16 0 0 1 0 18 16 16 0 0 1 0-18Z"/></svg></button>
+        <div class="preference-menu language-menu" id="language-menu" role="menu" data-i18n-label="language" hidden></div>
+      </div>
+    </div>
+  </header>
+  <nav class="panel-tabs" role="tablist" aria-label="What the Focus">
+    <button type="button" id="tab-distractions" role="tab" aria-selected="true" aria-controls="panel-distractions" data-i18n="tabDistractions">Distractions</button>
+    <button type="button" id="tab-time" role="tab" aria-selected="false" aria-controls="panel-time" tabindex="-1" data-i18n="tabTime">Time</button>
+    <button type="button" id="tab-focus" role="tab" aria-selected="false" aria-controls="panel-focus" tabindex="-1" data-i18n="tabFocus">Time &amp; focus</button>
+  </nav>
+  <main>
+    <section id="panel-distractions" role="tabpanel" aria-labelledby="tab-distractions">
+    <label class="focus-control" for="enabled">
+      <span class="focus-copy"><strong data-i18n="enabledTitle">Hide distractions</strong><span id="focus-state">Keep conversations in focus.</span></span>
+      <span class="switch"><input id="enabled" type="checkbox" role="switch" data-i18n-label="enabledTitle" disabled><span class="switch-track" aria-hidden="true"></span></span>
+    </label>
+    <fieldset id="features" disabled>
+      <legend data-i18n="areasTitle">Choose what stays out of sight</legend>
+      <label class="feature-row"><span data-i18n="hideStatus">Status &amp; avatar rings</span><input id="status" type="checkbox"></label>
+      <label class="feature-row"><span data-i18n="hideChannels">Channels</span><input id="channels" type="checkbox"></label>
+      <label class="feature-row"><span data-i18n="hideCommunities">Communities</span><input id="communities" type="checkbox"></label>
+      <label class="feature-row"><span data-i18n="hideMetaAI">Meta AI &amp; Ask Meta AI</span><input id="metaAI" type="checkbox"></label>
+      <label class="feature-row"><span data-i18n="hideArchived">Archived chats</span><input id="archived" type="checkbox"></label>
+      <label class="feature-row"><span data-i18n="hideLockedChats">Locked chats</span><input id="lockedChats" type="checkbox"></label>
+      <label class="feature-row"><span data-i18n="hideMedia">Media shortcut</span><input id="media" type="checkbox"></label>
+      <label class="feature-row"><span data-i18n="hideCalls">Calls shortcut</span><input id="calls" type="checkbox"></label>
+      <label class="feature-row"><span data-i18n="fixedFavicon">Fixed icon and title without unread count</span><input id="favicon" type="checkbox"></label>
+    </fieldset>
+    <p class="feedback" id="feedback" role="status" aria-live="polite" data-i18n="loading">Loading preferences…</p>
+    <p class="update-notice" id="update-notice" hidden data-i18n="updateRequired">Reload the extension and WhatsApp to apply this update.</p>
+    </section>
+    <section id="panel-time" role="tabpanel" aria-labelledby="tab-time" hidden>
+      <section class="time-section" aria-labelledby="time-title">
+        <h2 id="time-title" data-i18n="timeTitle">Your time</h2>
+        <label class="feature-row tracking-row"><span data-i18n="trackTime">Record time spent</span><input id="tracking" type="checkbox" disabled></label>
+        <p class="subtle" data-i18n="trackHint">Counts active use in this Chrome profile. Starts when enabled.</p>
+        <label class="feature-row counter-row"><span data-i18n="showCounter">Show counter in WhatsApp</span><input id="show-counter" type="checkbox" disabled></label>
+        <div class="time-metrics"><div><span data-i18n="today">Today</span><strong id="time-today">0 min</strong></div><div><span data-i18n="thisWeek">This week</span><strong id="time-week">0 min</strong></div><div><span data-i18n="thisMonth">This month</span><strong id="time-month">0 min</strong></div></div>
+        <details class="time-history"><summary data-i18n="lastSevenDays">Last 7 days</summary><ol id="history-days"></ol><button class="quiet-button" type="button" id="clear-history" data-i18n="clearHistory" disabled>Clear history</button></details>
+        <p class="subtle privacy-hint" data-i18n="localUsageHint">Only daily totals stay on this device. No messages or contacts. Keeps 365 days.</p>
+      </section>
+    </section>
+    <section id="panel-focus" role="tabpanel" aria-labelledby="tab-focus" hidden>
+      <section class="session-section" aria-labelledby="session-title">
+        <h2 id="session-title" data-i18n="sessionTitle">Focus session</h2>
+        <div id="session-setup"><p class="subtle" data-i18n="sessionHint">Take a break from WhatsApp. Choose how long.</p>
+          <fieldset class="duration-options" id="durations" disabled><legend class="sr-only" data-i18n="sessionHint">Choose how long.</legend>
+            <label><input type="radio" name="duration" value="30" checked><span data-i18n="duration30">30 min</span></label>
+            <label><input type="radio" name="duration" value="60"><span data-i18n="duration60">1 hour</span></label>
+            <label><input type="radio" name="duration" value="120"><span data-i18n="duration120">2 hours</span></label>
+            <label><input type="radio" name="duration" value="240"><span data-i18n="duration240">4 hours</span></label>
+          </fieldset>
+          <label class="feature-row notification-row"><span data-i18n="silenceNotifications">Silence browser notifications</span><input id="silence-notifications" type="checkbox" disabled></label>
+          <p class="subtle" id="permission-hint" data-i18n="permissionHint">Optional Chrome permission. Applies only to WhatsApp Web.</p>
+          <p class="subtle" data-i18n="silentAudioNote">Tab audio is silenced during the session, including calls.</p>
+          <button class="primary-button" id="start-focus" type="button" data-i18n="startFocus" disabled>Start focus session</button>
+        </div>
+        <div id="session-running" hidden><p class="subtle" data-i18n="focusRunning">Focus session in progress</p><time id="session-clock" class="session-clock" dir="ltr">00:00:00</time><p id="session-until" class="subtle"></p><p id="session-notifications" class="subtle"></p><p id="session-audio-warning" class="subtle" data-i18n="audioUnavailable" hidden></p><button class="secondary-button" id="end-focus" type="button" data-i18n="endEarly">End early</button></div>
+        <p class="focus-feedback subtle" id="focus-feedback" role="status" aria-live="polite"></p>
+      </section>
+      <div class="session-section continuous-settings">
+        <label class="feature-row notification-row"><span data-i18n="alwaysSilence">Always silence Chrome notifications</span><input id="always-silence" type="checkbox" aria-describedby="always-silence-hint" disabled></label>
+        <p class="subtle" id="always-silence-hint" data-i18n="alwaysSilenceHint">Applies to WhatsApp Web, even outside a focus session.</p>
+        <p class="subtle focus-feedback" id="always-silence-feedback" role="status" aria-live="polite" hidden></p>
+      </div>
+      <p class="demo-note subtle" id="demo-note" data-i18n="demoNote" hidden>Local preview. No real tabs or notifications are silenced.</p>
+    </section>
+  </main>
+  <dialog id="action-confirm" aria-labelledby="confirm-title" aria-describedby="confirm-body"><h2 id="confirm-title"></h2><p id="confirm-body"></p><div class="confirm-actions"><button class="primary-button" id="confirm-cancel" type="button"></button><button class="secondary-button" id="confirm-proceed" type="button"></button></div></dialog>
+  <footer class="app-footer">
+    <div class="footer-links"><a href="product/index.html" data-product-link target="_blank" rel="noopener" data-i18n="productLink">Meet What the Focus</a><a href="https://app.dumela.tv/" target="_blank" rel="noopener" data-i18n="appsLink">More Dumela apps <span aria-hidden="true">↗</span></a></div>
+    <div class="footer-meta"><span>© <span id="year">2026</span> Dumela</span><span id="version" class="version">0.3.12</span></div>
+  </footer>
+</body>
+</html>
